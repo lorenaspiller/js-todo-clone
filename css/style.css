@@ -3,7 +3,21 @@
   border: 0;
   box-sizing: border-box;
 }
+.container {
+  max-width: 1024px;
+  margin: auto;
+  padding: 30px 0;
+}
 
+input, label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
 .template {
   display: none;
