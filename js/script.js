@@ -13,7 +13,7 @@ var toDoList = [
   "comprare uova"
 ];
 
-var list = $('.todo-list li ');
+var listElement = $('.todo-list li ');
 
 // Attraverso l'array
 
@@ -25,7 +25,7 @@ for (var i = 0; i < toDoList.length; i++) {
   template.prepend(toDoList[i]);
 
   // Aggiungo il li del template alla .todo-list
-  list.append(template);
+  listElement.append(template);
 }
 
 
@@ -40,9 +40,7 @@ add.keydown(function(e){
     var text = $(this).val();
     // console.log(text);
 
-
     //controllo che il campo input non sia vuoto, così da non aggiungere elementi vuoti alla lista
-
     if (text != "") {
       // Clono il mio li nel template
       var template = $('.template ul li').clone();
@@ -51,15 +49,22 @@ add.keydown(function(e){
       template.prepend(text);
 
       // Aggiungo il li del template alla .todo-list
-      list.append(template);
+      listElement.append(template);
 
       // Svuoto il campo input una volta inserito l'elemento digitato
       $(this).val("");
     }
-
   }
+});
 
 
+// rendo la X cliccabile, così da poter cancellare un elemento
+
+var list = $('.todo-list');
+
+// la rendo cliccabile anche sugli elementi che l'utente inserirà in futuro
+list.on('click', '.todo-list__done', function() {
+  $(this).parent().remove();
 });
 
 
