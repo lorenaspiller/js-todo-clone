@@ -4,6 +4,28 @@ Creare una todo list che permatta di aggiungere (tramite campo input) e rimuover
 */
 
 
+/*
+FUNZIONE
+*/
+/**
+ * templateClone - clona un template, modifica gli elementi e li inietta nel DOM
+ *
+ * @param  {duplicateMe}  duplicateMe   copia l'elemento del DOM selezionato
+ * @param  {addMeBefore}  addMeBefore   modifica aggiungendo le info all'inizio dell'elemento del template
+ * @param  {addMeAfter}   addMeAfter    modifica aggiungendo le info alla fine dell'elemento del template
+ */
+function templateClone(duplicateMe, addMeBefore, addMeAfter) {
+  // Clono il mio li nel template
+  var template = duplicateMe.clone();
+
+  // Aggiungo gli elementi dell'array della to do list al li del template
+  template.prepend(addMeBefore);
+
+  // Aggiungo il li del template alla .todo-list
+  addMeAfter.append(template);
+}
+
+
 $(function() {
 
 var toDoList = [
@@ -14,18 +36,15 @@ var toDoList = [
 ];
 
 var listElement = $('.todo-list li ');
+var templateListElement = $('.template ul li');
 
 // Attraverso l'array
 
 for (var i = 0; i < toDoList.length; i++) {
   // Clono il mio li nel template
-  var template = $('.template ul li').clone();
-
   // Aggiungo gli elementi dell'array della to do list al li del template
-  template.prepend(toDoList[i]);
-
   // Aggiungo il li del template alla .todo-list
-  listElement.append(template);
+  templateClone(templateListElement, toDoList[i], listElement);
 }
 
 
@@ -43,19 +62,16 @@ add.keydown(function(e){
     //controllo che il campo input non sia vuoto, così da non aggiungere elementi vuoti alla lista
     if (text != "") {
       // Clono il mio li nel template
-      var template = $('.template ul li').clone();
-
       // Aggiungo gli elementi dell'array della to do list al li del template
-      template.prepend(text);
-
       // Aggiungo il li del template alla .todo-list
-      listElement.append(template);
+      templateClone(templateListElement, text, listElement);
 
       // Svuoto il campo input una volta inserito l'elemento digitato
       $(this).val("");
     }
   }
 });
+
 
 
 // rendo la X cliccabile, così da poter cancellare un elemento
@@ -66,23 +82,5 @@ var list = $('.todo-list');
 list.on('click', '.todo-list__done', function() {
   $(this).parent().remove();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
