@@ -4,6 +4,24 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  font-family: 'Comfortaa', cursive;
+}
+
+h1 {
+  font-family: 'Rock Salt', cursive;
+  font-size: 50px;
+  text-transform: uppercase;
+  padding-top: 40px;
+}
+
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   max-width: 1024px;
   margin: auto;
@@ -15,11 +33,40 @@
 
 .todo-list {
   margin-bottom: 30px;
+  padding-left: 0;
+  list-style: none;
 }
 
-.todo-list li {
-  margin-top: 20px;
+.todo-list .first-element {
+  display: inline-block;
+  width: 270px;
+}
 
+.todo-list li, .todo-list .first-element {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+}
+
+.todo-list li > li,
+.todo-list .first-element {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-list-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
 }
 
 input, label {
@@ -30,6 +77,7 @@ input, label {
 input {
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%;
 }
 
 .template {
